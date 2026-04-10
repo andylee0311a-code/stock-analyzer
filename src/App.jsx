@@ -88,7 +88,7 @@ export default function App() {
   // 簡單的 Markdown 渲染器 (將特定標籤轉為有質感的 Tailwind UI)
   const renderMarkdown = (text) => {
     const lines = text.split('\n');
-    let inList = false;
+   
     
     // 依據字級狀態，同步調整標題比例
     const h2Size = ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl', 'text-5xl'][textSizeIndex];
