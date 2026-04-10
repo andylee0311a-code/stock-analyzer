@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, TrendingUp, AlertTriangle, BarChart2, PieChart, ShieldAlert, FileText, ChevronRight, Loader2, Landmark, Moon, Sun, Plus, Minus, Type } from 'lucide-react';
 
 // 環境提供的 API Key (由系統自動注入)
-const apiKey = "";
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 export default function App() {
   const [query, setQuery] = useState('');
