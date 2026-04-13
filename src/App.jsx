@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'; // 👈 新增 useEffect
-import { Search, TrendingUp, AlertTriangle, BarChart2, PieChart, ShieldAlert, FileText, ChevronRight, Loader2, Landmark, Moon, Sun, Plus, Minus, Type, ArrowUp } from 'lucide-react'; // 👈 新增 ArrowUp
+import React, { useState, useEffect } from 'react';
+import { Search, TrendingUp, AlertTriangle, BarChart2, PieChart, ShieldAlert, FileText, ChevronRight, Loader2, Landmark, Moon, Sun, Plus, Minus, Type, ArrowUp } from 'lucide-react';
 
 // 環境提供的 API Key (由系統自動注入)
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+const apiKey = "";
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -10,10 +10,10 @@ export default function App() {
   const [report, setReport] = useState('');
   const [error, setError] = useState('');
   
-  // 👇 新增：控制「回到頁首」按鈕是否顯示的狀態
+  // 新增：控制「回到頁首」按鈕是否顯示的狀態
   const [showTopBtn, setShowTopBtn] = useState(false);
-  
-  // 👇 新增：監聽捲動事件
+
+  // 新增：監聽捲動事件
   useEffect(() => {
     const handleScroll = () => {
       // 當網頁往下捲動超過 300px 時，顯示按鈕
@@ -29,14 +29,13 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 👇 新增：平滑捲動到頁首的函式
+  // 新增：平滑捲動到頁首的函式
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // 加入平滑過渡效果
+      behavior: 'smooth'
     });
   };
-  
   
   // 新增：深色模式與字體大小狀態管理
   const [darkMode, setDarkMode] = useState(false);
@@ -85,7 +84,7 @@ export default function App() {
     setReport('');
 
     try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
       const payload = {
         contents: [{ parts: [{ text: `請為我分析這檔標的：${query}` }] }],
         systemInstruction: { parts: [{ text: systemPrompt }] },
@@ -116,7 +115,7 @@ export default function App() {
   // 簡單的 Markdown 渲染器 (將特定標籤轉為有質感的 Tailwind UI)
   const renderMarkdown = (text) => {
     const lines = text.split('\n');
-   
+    let inList = false;
     
     // 依據字級狀態，同步調整標題比例
     const h2Size = ['text-xl', 'text-2xl', 'text-3xl', 'text-4xl', 'text-5xl'][textSizeIndex];
@@ -288,13 +287,8 @@ export default function App() {
           </div>
         )}
       </main>
-    return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-slate-900 selection:bg-indigo-900' : 'bg-slate-50 selection:bg-indigo-200'}`}>
-      
-      {/* 頂部導覽列略... */}
-      {/* main 區塊略... */}
 
-      {/* 👇 新增：回到頁首浮動按鈕 */}
+      {/* 回到頁首浮動按鈕 */}
       {showTopBtn && (
         <button
           onClick={scrollToTop}
@@ -309,7 +303,6 @@ export default function App() {
           <ArrowUp className="w-6 h-6" />
         </button>
       )}
-
-    </div> // 這是整個元件最後一個結尾 div
+    </div>
   );
 }
