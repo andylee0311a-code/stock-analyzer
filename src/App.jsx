@@ -271,6 +271,14 @@ export default function App() {
             <div className={`report-content transition-all duration-300 ${textSizes[textSizeIndex]}`}>
               {renderMarkdown(report)}
             </div>
+
+            {/* 新增：免責聲明警語 */}
+            <div className={`mt-10 pt-6 border-t ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+              <p className={`font-bold text-center flex items-center justify-center text-lg ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
+                <AlertTriangle className="w-5 h-5 mr-2 shrink-0" />
+                注意：本建議由 AI 生成，僅供參考，不構成實際投資勸誘，投資人應自負盈虧。
+              </p>
+            </div>
           </div>
         )}
 
