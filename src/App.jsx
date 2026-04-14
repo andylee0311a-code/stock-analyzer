@@ -296,6 +296,13 @@ export default function App() {
         )}
       </main>
 
+      {/* 新增：設計師專屬頁尾簽名 (升級醒目漸層版) */}
+      <footer className="py-8 text-center">
+        <p className="inline-block text-lg font-extrabold tracking-widest uppercase bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-sm hover:scale-105 transition-transform duration-300 cursor-default">
+          Designed by Andy Lee
+        </p>
+      </footer>
+
       {/* 回到頁首浮動按鈕 */}
       {showTopBtn && (
         <button
